@@ -1,0 +1,57 @@
+{
+  "name": "url-shortener",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "bookshelf": "^0.13.3",
+    "bookshelf-camelcase": "^2.0.1",
+    "bookshelf-modelbase": "^2.10.4",
+    "convict": "^4.3.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "0.13.2",
+    "graphql-relay": "^0.5.5",
+    "knex": "^0.14.6",
+    "pg": "^7.4.3"
+  },
+  "scripts": {
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "start": "nodemon src/server.ts --exec 'ts-node --files' --ext ts",
+    "build": "tsc",
+    "start-production": "NODE_ENV=production node dist/src/server.js",
+    "print-schema": "ts-node src/scripts/printSchema.ts",
+    "test": "TS_NODE_FILES=true NODE_ENV=test mocha --exit -r ts-node/register -r ./test/setup.ts -r ./test/unit/setup.ts --timeout 15000 'test/unit/**/*.ts'",
+    "test-debug": "yarn test --inspect-brk=0.0.0.0:9229"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/chai-http": "^3.0.5",
+    "@types/graphql": "^0.13.4",
+    "@types/graphql-relay": "^0.4.5",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.7.0",
+    "@types/passport-jwt": "^3.0.1",
+    "@types/sinon-chai": "^3.2.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.0.0",
+    "commander": "^2.16.0",
+    "factory-girl": "^5.0.2",
+    "knex-cleaner": "^1.1.4",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "serve-handler": "^3.6.1",
+    "sinon": "^6.1.4",
+    "sinon-chai": "^3.2.0",
+    "sqlite3": "^4.0.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.10.0",
+    "typescript": "^3.0.1"
+  },
+  "resolutions": {
+    "graphql": "0.13.2"
+  }
+}

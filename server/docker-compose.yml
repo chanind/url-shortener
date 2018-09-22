@@ -1,0 +1,38 @@
+version: '3'
+services:
+  api:
+    container_name: url_shortener_backend
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+      - "9229:9229"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/code
+      - node_modules:/code/node_modules
+      - bash_history:/root
+    command: yarn start
+
+  postgres:
+    hostname: postgres
+    container_name: url_shortener_postgres
+    restart: always
+    image: postgres:9.6.9
+    volumes:
+       - dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=url_shortener
+      - POSTGRES_ROOT_PASSWORD=root_pw
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app_pw
+    ports:
+      - "5432:5432"
+
+volumes:
+  dbdata:
+  bash_history:
+  node_modules:
