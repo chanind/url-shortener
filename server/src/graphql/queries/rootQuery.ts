@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
+import { forwardConnectionArgs, connectionFromArraySlice, cursorToOffset } from 'graphql-relay';
 import { nodeField } from '../node';
-import UrlQuery from './UrlQuery';
+import UrlQuery, { UrlsConnection } from './UrlQuery';
 import Url from '../../models/Url';
 
 const rootQuery = new GraphQLObjectType({
@@ -18,6 +19,23 @@ const rootQuery = new GraphQLObjectType({
       resolve: async (_source, args) => await Url.findOne({
         identifier: args.identifier.toUpperCase(),
       }),
+    },
+    allUrls: {
+      type: UrlsConnection,
+      args: forwardConnectionArgs,
+      resolve: async (_source, args) => {
+        const offset = args.after ? cursorToOffset(args.after) + 1 : 0;
+        const limit = args.first || 10;
+        const total = await Url.count();
+        const urls = await Url
+          .query(qb => qb.offset(offset).limit(limit))
+          .orderBy('id', 'desc')
+          .fetchAll();
+        return connectionFromArraySlice(urls.models, args, {
+          sliceStart: offset,
+          arrayLength: total,
+        });
+      },
     },
   },
 });
