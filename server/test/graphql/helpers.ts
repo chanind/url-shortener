@@ -23,5 +23,6 @@ export const expectErrors = (res: any, numExpected: number = 1) => {
     console.log(res.body.errors);
   }
   expect(res).to.have.status(200);
+  expect(res.body.errors).not.to.be.undefined;
   expect(res.body.errors).to.have.lengthOf(numExpected);
 };
