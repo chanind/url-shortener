@@ -10,9 +10,11 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
-    "graphql": "0.13.2",
+    "graphql": "14.0.2",
     "graphql-relay": "^0.5.5",
-    "knex": "^0.14.6",
+    "knex": "^0.15.2",
+    "lodash.padstart": "^4.6.1",
+    "lodash.random": "^3.2.0",
     "pg": "^7.4.3"
   },
   "scripts": {
@@ -21,14 +23,14 @@
     "build": "tsc",
     "start-production": "NODE_ENV=production node dist/src/server.js",
     "print-schema": "ts-node src/scripts/printSchema.ts",
-    "test": "TS_NODE_FILES=true NODE_ENV=test mocha --exit -r ts-node/register -r ./test/setup.ts -r ./test/unit/setup.ts --timeout 15000 'test/unit/**/*.ts'",
+    "test": "TS_NODE_FILES=true NODE_ENV=test mocha --exit -r ts-node/register -r ./test/setup.ts 'test/**/*.test.ts'",
     "test-debug": "yarn test --inspect-brk=0.0.0.0:9229"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/chai-as-promised": "^7.1.0",
     "@types/chai-http": "^3.0.5",
-    "@types/graphql": "^0.13.4",
+    "@types/graphql": "^14.0.0",
     "@types/graphql-relay": "^0.4.5",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.7.0",
@@ -42,7 +44,7 @@
     "knex-cleaner": "^1.1.4",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.5",
-    "serve-handler": "^3.6.1",
+    "serve-handler": "^5.0.2",
     "sinon": "^6.1.4",
     "sinon-chai": "^3.2.0",
     "sqlite3": "^4.0.2",
@@ -50,8 +52,5 @@
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.10.0",
     "typescript": "^3.0.1"
-  },
-  "resolutions": {
-    "graphql": "0.13.2"
   }
 }
