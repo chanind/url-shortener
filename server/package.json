@@ -24,6 +24,7 @@
     "build": "tsc",
     "start-production": "NODE_ENV=production node dist/src/server.js",
     "print-schema": "ts-node src/scripts/printSchema.ts",
+    "migrate-db": "knex migrate:latest",
     "test": "TS_NODE_FILES=true NODE_ENV=test mocha --exit -r ts-node/register -r ./test/setup.ts 'test/**/*.test.ts'",
     "test-debug": "yarn test --inspect-brk=0.0.0.0:9229"
   },
