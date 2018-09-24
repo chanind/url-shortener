@@ -1,0 +1,41 @@
+.NavBar {
+  width: 100%;
+  background: #1976d2;
+  text-align: center;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.NavBar-inner {
+  max-width: 1004px;
+  margin: 0 auto;
+  padding: 0 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.NavBar-brandLink, .NavBar-link {
+  padding: 0 20px;
+  height: 60px;
+  line-height: 60px;
+  display: block;
+  float:left;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 300ms;
+  background: #1976d2;
+}
+.NavBar-brandLink:hover,
+.NavBar-link:hover {
+  text-decoration: none;
+}
+
+.NavBar-link {
+  color: #EEE;
+  font-size: 16px;
+}
+.NavBar-link:hover {
+  background: #2196f3;
+  color: white;
+}

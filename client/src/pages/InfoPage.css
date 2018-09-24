@@ -1,0 +1,19 @@
+.InfoPage {
+  text-align: center;
+  color: white;
+}
+
+.InfoPage-shortUrl {
+  margin-bottom: 50px;
+}
+
+.InfoPage-label {
+  font-size: 12px;
+  color: #DDD;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.InfoPage-main {
+  padding-top: 40px;
+}

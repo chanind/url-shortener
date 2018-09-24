@@ -1,0 +1,82 @@
+schema {
+  query: Root
+  mutation: Mutation
+}
+
+input CreateUrlInput {
+  destination: String!
+  clientMutationId: String
+}
+
+type CreateUrlPayload {
+  url: Url
+  clientMutationId: String
+}
+
+type Mutation {
+  createUrl(input: CreateUrlInput!): CreateUrlPayload
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Root {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+  viewer: Viewer!
+}
+
+type Url implements Node {
+  """The ID of an object"""
+  id: ID!
+  identifier: String!
+  destination: String!
+  createdAt: Int!
+}
+
+"""A connection to a list of items."""
+type UrlConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UrlEdge]
+}
+
+"""An edge in a connection."""
+type UrlEdge {
+  """The item at the end of the edge"""
+  node: Url
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type Viewer {
+  urlByIdentifier(
+    """Look up a url by its shortened identifier"""
+    identifier: String!
+  ): Url
+  allUrls(after: String, first: Int): UrlConnection!
+}
