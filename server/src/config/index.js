@@ -14,6 +14,11 @@ const config = convict({
     env: 'PORT',
     arg: 'port',
   },
+  webHost: {
+    doc: 'The hostname for the website frontend',
+    format: String,
+    default: 'http://localhost:3000',
+  },
   db: {
     debug: {
       doc: 'Turn on bookshelf debugging',
