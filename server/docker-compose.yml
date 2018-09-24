@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api:
+  backend:
     container_name: url_shortener_backend
     restart: on-failure
     build:
