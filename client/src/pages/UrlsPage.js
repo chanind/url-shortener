@@ -6,7 +6,6 @@ import environment from '../environment';
 import NavBar from '../components/NavBar';
 import Main from '../components/Main';
 import UrlsScroller from '../components/UrlsScroller';
-import './UrlsPage.css';
 
 const UrlsPage_viewerQuery = graphql`
   query UrlsPage_viewerQuery {
@@ -15,7 +14,6 @@ const UrlsPage_viewerQuery = graphql`
     }
   }
 `
-
 
 const UrlsPage = () => (
   <QueryRenderer

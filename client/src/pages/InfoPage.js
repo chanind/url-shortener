@@ -36,8 +36,13 @@ const InfoPage = ({ match }: Props) => (
           render={({error, props}) => {
             if (error) return <div><h2>:(</h2>{error.message}</div>;
             if (!props) return <span>Loading...</span>;
-            if (props && !props.viewer && !props.viewer.userByIdentifier) {
-              return <h2>Could not find a URL with that identifier</h2>;
+            if (props && props.viewer && !props.viewer.urlByIdentifier) {
+              return (
+                <div>
+                  <h2>:(</h2>
+                  Could not find a URL with that identifier
+                </div>
+              );
             }
             const { destination } = props.viewer.urlByIdentifier;
             return (
