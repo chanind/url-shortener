@@ -6,6 +6,7 @@
 
 .Url-shortLink,
 .Url-destination {
+  word-break: break-all;
   position: relative;
   padding-left: 80px;
 }
