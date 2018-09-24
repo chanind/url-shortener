@@ -18,6 +18,7 @@ const config = convict({
     doc: 'The hostname for the website frontend',
     format: String,
     default: 'http://localhost:3000',
+    env: 'WEB_HOST',
   },
   db: {
     debug: {
