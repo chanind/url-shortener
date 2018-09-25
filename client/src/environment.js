@@ -7,7 +7,7 @@ import {
   Store,
 } from 'relay-runtime';
 
-const fetchQuery = (operation, variables) => {
+const defaultFetchQuery = (operation, variables) => {
   return fetch(`//${process.env.REACT_APP_API_HOST || ''}/api/graphql`, {
     method: 'POST',
     headers: {
@@ -21,9 +21,20 @@ const fetchQuery = (operation, variables) => {
   }).then(response => response.json());
 };
 
-const network = Network.create(fetchQuery);
+export type fetchQueryFunc = ({text: string}, {[string]: any}) => Promise<any>;
 
-const source = new RecordSource();
-const store = new Store(source);
+export const createEnvironment = (fetchQuery: fetchQueryFunc) => {
+  const network = Network.create(fetchQuery);
+  const source = new RecordSource();
+  const store = new Store(source);
+  return new Environment({ network, store });
+}
 
-export default new Environment({ network, store });
+let environment = createEnvironment(defaultFetchQuery);
+
+// useful for resetting environment between tests
+export const overrideEnvironment = (fetchQuery: fetchQueryFunc) => {
+  environment = createEnvironment(fetchQuery);
+};
+
+export const getEnvironment = () => environment;

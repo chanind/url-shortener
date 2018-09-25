@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
-import environment from '../environment';
+import {getEnvironment} from '../environment';
 import NavBar from '../components/NavBar';
 import Main from '../components/Main';
 import UrlsScroller from '../components/UrlsScroller';
@@ -17,7 +17,7 @@ const UrlsPage_viewerQuery = graphql`
 
 const UrlsPage = () => (
   <QueryRenderer
-    environment={environment}
+    environment={getEnvironment()}
     query={UrlsPage_viewerQuery}
     render={({error, props}) => {
       if (error) {

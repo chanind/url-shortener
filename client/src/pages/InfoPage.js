@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Match } from 'react-router-dom';
 import {graphql, QueryRenderer} from 'react-relay';
-import environment from '../environment';
+import {getEnvironment} from '../environment';
 import NavBar from '../components/NavBar';
 import Main from '../components/Main';
 import './InfoPage.css';
@@ -30,7 +30,7 @@ const InfoPage = ({ match }: Props) => (
     <Main>
       <div className='InfoPage-main'>
         <QueryRenderer
-          environment={environment}
+          environment={getEnvironment()}
           query={infoPage_urlQuery}
           variables={{ identifier: match.params.identifier }}
           render={({error, props}) => {

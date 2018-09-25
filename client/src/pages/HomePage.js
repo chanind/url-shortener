@@ -4,7 +4,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 import type { RouterHistory } from 'react-router-dom';
-import environment from '../environment';
+import { getEnvironment } from '../environment';
 import CreateUrlMutation from '../mutations/CreateUrlMutation';
 import './HomePage.css';
 
@@ -25,13 +25,13 @@ class HomePage extends React.Component<Props, State> {
   };
 
   onCreateUrl = async (evt: SyntheticEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+    if (evt) evt.preventDefault();
     if (!this.state.destination) {
       this.setState({ error: 'Must enter a URL' });
       return;
     }
     try {
-      const result = await CreateUrlMutation.commit(environment, this.state.destination);
+      const result = await CreateUrlMutation.commit(getEnvironment(), this.state.destination);
       const identifier = result.createUrl.url.identifier;
       this.props.history.push(`/info/${identifier}`);
     } catch (err) {
